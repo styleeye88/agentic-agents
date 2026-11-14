@@ -1,25 +1,50 @@
-﻿# Agency Agents
+# Agency Agents
 
-多智能体协作框架 — 基于 Claude/GPT 的自主 Agent 系统
+Multi-agent collaboration framework — autonomous Agent system based on Claude/GPT
 
-## 特性
-- 🤖 多 Agent 协同编排
-- 🔗 工具链集成（CLI / MCP / Web）
-- 📊 任务分解与状态追踪
-- 🧠 记忆与上下文管理
+## Features
 
-## 快速开始
+- **Multi-Agent Orchestration** — Modular agent design with task decomposition and result aggregation
+- **Tool Registry** — Unified tool management, agents call external tools dynamically
+- **Orchestrator** — OrchestratorRunner coordinates parallel/serial execution across agents
+- **Test Coverage** — pytest + ruff linting, CI auto-validates on every push
 
-\\\ash
-git clone git@github.com:styleeye88/agentic-agents.git
+## Quick Start
+
+`ash
+git clone https://github.com/styleeye88/agentic-agents.git
 cd agentic-agents
-pip install -r requirements.txt
-\\\
+pip install -e ".[dev]"
+pytest -v
+`
 
-## 架构
-- \gents/\ — 核心 Agent 实现
-- \	ools/\ — 工具集
-- \orchestrator/\ — 调度器
+## Project Structure
 
----
-*Created by styleeye88 · 2026-11-14*
+`
+agentic-agents/
+├── agents/            # Core agent implementations
+│   ├── __init__.py
+│   └── base.py        # BaseAgent abstract class
+├── tools/             # Tool registry and implementations
+│   ├── __init__.py
+│   └── registry.py    # ToolRegistry
+├── orchestrator/      # Multi-agent scheduler
+│   ├── __init__.py
+│   └── runner.py      # OrchestratorRunner
+├── tests/             # Unit tests
+├── .github/workflows/ # GitHub Actions CI
+├── pyproject.toml     # Project config
+├── requirements.txt   # Dependencies
+└── README.md
+`
+
+## CI / CD
+
+GitHub Actions runs automatically on every push to main or PR:
+- Multi-Python testing (3.10 / 3.11 / 3.12)
+- Ruff linting
+- pytest test suite
+
+## License
+
+MIT
