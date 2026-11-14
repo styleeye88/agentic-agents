@@ -1,49 +1,69 @@
 # Agency Agents
 
-Multi-agent collaboration framework — autonomous Agent system based on Claude/GPT
+Multi-agent collaboration framework — autonomous Agent system built on LLM APIs.
 
 ## Features
 
-- **Multi-Agent Orchestration** — Modular agent design with task decomposition and result aggregation
-- **Tool Registry** — Unified tool management, agents call external tools dynamically
-- **Orchestrator** — OrchestratorRunner coordinates parallel/serial execution across agents
-- **Test Coverage** — pytest + ruff linting, CI auto-validates on every push
+- **BaseAgent** — Abstract base with shared context management
+- **SearchAgent** — Information retrieval with scored results
+- **CoderAgent** — Code generation + code review
+- **AnalystAgent** — Statistical analysis (sum / mean)
+- **ToolRegistry** — Centralized tool registration and lookup
+- **OrchestratorRunner** — Parallel/serial multi-agent execution
+- **GitHub Actions CI** — Tests on Python 3.10/3.11/3.12 + ruff linting
+- **Codecov coverage** — Tracks test coverage per PR
 
 ## Quick Start
 
-`ash
+```bash
 git clone https://github.com/styleeye88/agentic-agents.git
 cd agentic-agents
 pip install -e ".[dev]"
 pytest -v
-`
+python examples/example.py
+```
 
 ## Project Structure
 
-`
+```
 agentic-agents/
-├── agents/            # Core agent implementations
+├── agents/                 # Core agent implementations
 │   ├── __init__.py
-│   └── base.py        # BaseAgent abstract class
-├── tools/             # Tool registry and implementations
+│   ├── base.py             # BaseAgent abstract class
+│   ├── search_agent.py     # Search & retrieval agent
+│   ├── coder_agent.py      # Code generation & review
+│   └── analyst_agent.py    # Statistical analysis
+├── tools/                  # Tool registry
 │   ├── __init__.py
-│   └── registry.py    # ToolRegistry
-├── orchestrator/      # Multi-agent scheduler
+│   └── registry.py
+├── orchestrator/           # Multi-agent scheduler
 │   ├── __init__.py
-│   └── runner.py      # OrchestratorRunner
-├── tests/             # Unit tests
-├── .github/workflows/ # GitHub Actions CI
-├── pyproject.toml     # Project config
-├── requirements.txt   # Dependencies
+│   └── runner.py
+├── examples/               # Usage examples
+│   ├── __init__.py
+│   └── example.py
+├── tests/                  # Unit tests (7 passing)
+├── .github/workflows/      # GitHub Actions (CI + Coverage)
+├── pyproject.toml
+├── requirements.txt
 └── README.md
-`
+```
 
-## CI / CD
+## Running Locally
 
-GitHub Actions runs automatically on every push to main or PR:
-- Multi-Python testing (3.10 / 3.11 / 3.12)
-- Ruff linting
-- pytest test suite
+```bash
+# Install
+pip install -e ".[dev]"
+
+# Run tests
+pytest -v
+
+# Run linter
+ruff check .
+
+# Run example
+python examples/example.py
+```
 
 ## License
 
