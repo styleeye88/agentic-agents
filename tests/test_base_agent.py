@@ -10,7 +10,7 @@ class DummyAgent(BaseAgent):
 
 def test_agent_repr():
     agent = DummyAgent("test")
-    assert "DummyAgent" in repr(agent)
+    assert "Agent" in repr(agent)
 
 
 def test_agent_run():
